@@ -1,0 +1,6 @@
+Dashboard updates:
+- Landing page Dashboard links now use dashboard.html for static/local compatibility.
+- Dashboard API sends the logged-in email so stats are user-specific.
+- Dashboard merges live Monitoring Agent events into counters and recent activity.
+- Sidebar becomes a slide-out menu on smaller screens.
+- Cards, tables, agent box, charts, headers, and content containers are fully responsive.

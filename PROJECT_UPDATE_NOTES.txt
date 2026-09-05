@@ -1,0 +1,17 @@
+DAVE Malware Detection Project - Monitoring/Dashboard Integration Update
+
+1. Start Scan results are now stored under the logged-in user's account instead of user_id=1.
+2. Dashboard now calls /api/dashboard/stats correctly and receives both account-scoped scan results and Monitoring Agent activity.
+3. Dashboard no longer double-counts agent events.
+4. Scan, Detection Results and Reports use the logged-in account when requesting backend data.
+5. Malware scan results trigger a clear Dashboard notification; optional browser notifications are used only when permission is already granted.
+6. Live Monitoring Agent activity is classified conservatively as Safe, Warning or Suspicious. A live anomaly is not presented as confirmed malware.
+7. Monitoring Agent ignores common transient implementation files such as SQLite journal/WAL/SHM files, Python bytecode and editor lock files. This reduces false-looking Created/Deleted entries.
+8. Stop Monitoring pauses filesystem observers and clears queued events while keeping the agent process alive. Start Monitoring resumes the observers later.
+9. Clear Log removes saved agent activity for the current account/device. It does not remove scan results.
+10. The agent continues to monitor only the accessible filesystem locations on the computer where the agent is running, and sends event metadata rather than file contents.
+
+Important interpretation:
+- CREATED/DELETED events are OS filesystem events. A file can be created and deleted by an application without the user manually clicking Delete.
+- SQLite and other applications often create short-lived temporary files. The updated agent filters the common database journal files that previously appeared repeatedly.
+- A real malware verdict is produced by the static scan. Live monitoring reports unusual behaviour and should be described as behavioural/anomaly detection, not proof of malware.

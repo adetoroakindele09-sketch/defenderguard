@@ -1,0 +1,7 @@
+Dashboard account isolation update
+
+New dashboard accounts no longer inherit counts from the process-global local ActivityMonitor.
+Dashboard totals come from the logged-in user's scan_history and authenticated agent_events.
+The Windows monitoring agent runs on the machine where it is installed; it does not monitor the developer's PC.
+For remote monitoring, the agent should use the deployed backend URL and its own device token.
+For local testing, use http://127.0.0.1:5000.

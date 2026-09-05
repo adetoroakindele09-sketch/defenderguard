@@ -1,0 +1,19 @@
+DAVE LOCAL MONITORING AGENT - FINAL TEST
+
+1. Start Flask from Project backend:
+   python app.py
+
+2. Log into dashboard.
+3. Click Download Monitoring Agent.
+4. Extract DAVE-Monitor-Agent.zip.
+5. Open a terminal in the extracted folder.
+6. Run: python -m pip install -r requirements.txt
+7. Run: python agent.py
+8. Enter a folder you are authorized to monitor.
+9. Create/edit/rename/delete a harmless text file.
+10. Confirm [SENT] appears in the agent terminal.
+11. Refresh the dashboard and confirm Agent connected / event count changes.
+
+For a real remote user, the Flask API must be hosted at a reachable HTTPS address; 127.0.0.1 only works on the same computer.
+
+Do not upload file contents. The agent sends event metadata only.

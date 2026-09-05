@@ -1,0 +1,12 @@
+LOCAL MONITORING AGENT
+
+1. Start Flask from Project backend: python app.py
+2. Log into the website.
+3. Dashboard -> Download Monitoring Agent.
+4. Extract DAVE-Monitor-Agent.zip on the PC being monitored.
+5. In the extracted folder run: python -m pip install -r requirements.txt
+6. Run: python agent.py
+7. Enter an authorized folder path when asked.
+8. Create/edit/rename/delete a harmless text file to test.
+
+The agent sends metadata to Flask using its device token.

@@ -1,0 +1,37 @@
+DAVE DefenderGuard - Integrated Update
+
+This version includes:
+1. Strict Monitoring Agent pause/resume logic.
+   - STOP from the website pauses filesystem observers.
+   - Pending event queue is cleared.
+   - No queued/new filesystem events are sent while paused.
+   - The agent process/PowerShell remains alive for heartbeat/control.
+   - START resumes observers.
+
+2. Account-specific dashboard and agent activity.
+   - Dashboard queries the logged-in user's records.
+   - Monitoring-agent events are filtered by user/device.
+   - New accounts do not inherit another account's activity counters.
+
+3. Whole accessible Windows filesystem monitoring.
+   - Agent watches all currently accessible drive roots when watch_all_drives=true.
+   - It is event-based and does not copy/archive file contents.
+   - A bounded in-memory queue limits unbounded memory growth.
+   - Modified-event debouncing reduces event bursts.
+
+4. Responsive navigation across Dashboard, Start Scan, File Activity,
+   Detection Results, Reports, and Settings.
+   - Shared hamburger menu, slide-out sidebar, overlay, Escape-to-close,
+     and mobile/tablet layout rules.
+
+5. Dashboard route uses /api/dashboard/stats so it matches the frontend API base.
+
+LOCAL SETUP
+- Backend: python app.py (http://127.0.0.1:5000)
+- Frontend: serve Project/ with a local static server (for example port 5500).
+- File Activity -> Start Monitoring pairs the PC and downloads a personalized agent.
+- Extract the agent ZIP and run run_agent.bat once.
+- The running agent can then be started/stopped from File Activity without closing PowerShell.
+
+The database file is intentionally not included in this update archive so old demo/test
+records are not carried into a fresh installation. The backend creates the schema at startup.
