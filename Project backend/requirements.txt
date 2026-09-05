@@ -10,3 +10,4 @@ psutil
 reportlab
 
 requests
+gunicorn
