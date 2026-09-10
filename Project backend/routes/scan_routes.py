@@ -3,6 +3,8 @@ from werkzeug.utils import secure_filename
 import sqlite3
 import os
 from datetime import datetime
+from io import BytesIO
+from xml.sax.saxutils import escape
 
 from feature_extraction import extract_features
 
@@ -83,6 +85,7 @@ def report_pdf(scan_id):
         return jsonify(success=False, message='reportlab is not installed. Run: python -m pip install reportlab'), 500
 
     conn = db()
+    conn.row_factory = sqlite3.Row
     email = (request.args.get('email') or '').strip().lower()
     user = conn.execute('SELECT id FROM users WHERE LOWER(email)=?', (email,)).fetchone() if email else None
     if not user:
@@ -98,31 +101,36 @@ def report_pdf(scan_id):
     if not row:
         return jsonify(success=False, message='Scan not found.'), 404
 
-    out = os.path.join(UPLOAD_FOLDER, f'malware_scan_report_{scan_id}.pdf')
-    doc = SimpleDocTemplate(out, pagesize=A4, rightMargin=40, leftMargin=40, topMargin=40, bottomMargin=40)
-    styles = getSampleStyleSheet()
-    story = [Paragraph('Malware Detection Scan Report', styles['Title']), Spacer(1, 12)]
-    story.append(Paragraph('Malware Detection Using File Activity', styles['Heading2']))
-    story.append(Spacer(1, 8))
+    try:
+        output = BytesIO()
+        doc = SimpleDocTemplate(output, pagesize=A4, rightMargin=40, leftMargin=40, topMargin=40, bottomMargin=40)
+        styles = getSampleStyleSheet()
+        story = [Paragraph('Malware Detection Scan Report', styles['Title']), Spacer(1, 12)]
+        story.append(Paragraph('Malware Detection Using File Activity', styles['Heading2']))
+        story.append(Spacer(1, 8))
 
-    labels = ['Scan ID','File Name','File Size (bytes)','Prediction','Confidence','Risk','Scan Time',
-              'Write Count','Delete Count','Create Count','Rename Count','Write Entropy',
-              'Extension Diversity','Sensitive Path Access','Read/Write Ratio','Hidden File Activity',
-              'Execution Attempts','Detection Score']
-    vals = list(row[:18])
-    data = [['Metric','Result']] + [[str(a), str(b)] for a,b in zip(labels, vals)]
-    table = Table(data, colWidths=[210, 270])
-    table.setStyle(TableStyle([
-        ('BACKGROUND',(0,0),(-1,0),colors.HexColor('#163b6d')),
-        ('TEXTCOLOR',(0,0),(-1,0),colors.white),
-        ('GRID',(0,0),(-1,-1),0.5,colors.grey),
-        ('VALIGN',(0,0),(-1,-1),'TOP'),
-        ('PADDING',(0,0),(-1,-1),6),
-    ]))
-    story.append(table)
-    story.append(Spacer(1, 14))
-    story.append(Paragraph('<b>Detection explanation:</b> ' + str(row[18]), styles['BodyText']))
-    story.append(Spacer(1, 10))
-    story.append(Paragraph('Note: This upload scan uses static file analysis. Activity counters represent the controlled scan/upload transaction; they are not a substitute for process-attributed live monitoring.', styles['BodyText']))
-    doc.build(story)
-    return send_file(out, as_attachment=True, download_name=os.path.basename(out), mimetype='application/pdf')
+        labels = ['Scan ID','File Name','File Size (bytes)','Prediction','Confidence','Risk','Scan Time',
+                  'Write Count','Delete Count','Create Count','Rename Count','Write Entropy',
+                  'Extension Diversity','Sensitive Path Access','Read/Write Ratio','Hidden File Activity',
+                  'Execution Attempts','Detection Score']
+        vals = list(row[:18])
+        data = [['Metric','Result']] + [[str(a), str(b)] for a,b in zip(labels, vals)]
+        table = Table(data, colWidths=[210, 270])
+        table.setStyle(TableStyle([
+            ('BACKGROUND',(0,0),(-1,0),colors.HexColor('#163b6d')),
+            ('TEXTCOLOR',(0,0),(-1,0),colors.white),
+            ('GRID',(0,0),(-1,-1),0.5,colors.grey),
+            ('VALIGN',(0,0),(-1,-1),'TOP'),
+            ('PADDING',(0,0),(-1,-1),6),
+        ]))
+        story.append(table)
+        story.append(Spacer(1, 14))
+        detection_reasons = escape(str(row[18] or ''))
+        story.append(Paragraph('<b>Detection explanation:</b> ' + detection_reasons, styles['BodyText']))
+        story.append(Spacer(1, 10))
+        story.append(Paragraph('Note: This upload scan uses static file analysis. Activity counters represent the controlled scan/upload transaction; they are not a substitute for process-attributed live monitoring.', styles['BodyText']))
+        doc.build(story)
+        output.seek(0)
+        return send_file(output, as_attachment=True, download_name=f'malware_scan_report_{scan_id}.pdf', mimetype='application/pdf')
+    except Exception as error:
+        return jsonify(success=False, message=f'PDF generation failed: {error}'), 500
