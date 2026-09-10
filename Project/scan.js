@@ -249,7 +249,14 @@ if (reportBtn) {
                 alert("Run a scan first to generate its PDF report.");
                 return;
             }
-            window.open("http://127.0.0.1:5000/report/" + scanId + "/pdf", "_blank");
+            const email = storedUser?.email || "";
+            window.open(
+                "https://defenderguard.onrender.com/report/" +
+                encodeURIComponent(scanId) +
+                "/pdf?email=" +
+                encodeURIComponent(email),
+                "_blank"
+            );
 
         }
     );
@@ -511,14 +518,12 @@ function finishScan() {
 
     Therefore we MUST send the file to:
 
-        http://127.0.0.1:5000/scan
+        https://defenderguard.onrender.com/scan
     */
 
 
     const scanAPI = (window.DAVE_API ||
-        ((location.hostname === "localhost" || location.hostname === "127.0.0.1")
-            ? "http://127.0.0.1:5000"
-            : "https://david-defenderguard.vercel.app")).replace(/\/$/, "");
+        "https://defenderguard.onrender.com").replace(/\/$/, "");
 
     fetch(
         scanAPI + "/scan",

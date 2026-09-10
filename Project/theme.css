@@ -1,0 +1,246 @@
+/* Shared Defender Guard visual system */
+:root {
+    --project-ink: #14283d;
+    --project-muted: #5b6b7c;
+    --project-blue: #1769aa;
+    --project-blue-dark: #124d80;
+    --project-surface: #ffffff;
+    --project-bg: #f5f7fa;
+    --project-section: #e8eef5;
+    --project-border: #d6e0ea;
+    --project-success: #20805d;
+    --project-warning: #b7791f;
+    --project-danger: #c4504a;
+}
+
+body {
+    background: var(--project-bg) !important;
+    color: var(--project-ink) !important;
+    font-family: 'DM Sans', 'Segoe UI', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+body *:not(i) {
+    font-family: 'DM Sans', 'Segoe UI', sans-serif !important;
+}
+
+body i,
+body .fa,
+body .fas,
+body .far,
+body .fab,
+body .fa-solid,
+body .fa-regular,
+body .fa-brands {
+    font-family: 'Font Awesome 6 Free' !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+select,
+textarea {
+    font-family: 'DM Sans', 'Segoe UI', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--project-ink);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+button,
+.btn,
+.primary-btn,
+.action-btn,
+label,
+th {
+    font-weight: 600;
+}
+
+code,
+pre,
+.terminal,
+.live-log,
+.analysis-log {
+    font-family: 'IBM Plex Mono', 'Cascadia Code', Consolas, monospace;
+}
+
+.sidebar {
+    background: var(--project-ink) !important;
+    box-shadow: 5px 0 20px rgba(20, 40, 61, .12) !important;
+}
+
+.sidebar h2,
+.sidebar ul li i,
+header h1,
+.top-bar h1 {
+    color: #00a9c7 !important;
+}
+
+.sidebar ul li a {
+    color: #f8fafc !important;
+    text-decoration: none;
+}
+
+.sidebar ul li a:hover,
+.sidebar ul li.active a {
+    color: #ffffff !important;
+}
+
+.sidebar ul li:hover,
+.sidebar ul li.active {
+    background: var(--project-blue-dark) !important;
+    box-shadow: none !important;
+}
+
+.menu-toggle {
+    color: #ffffff !important;
+}
+
+.ml-features,
+.features {
+    color: #f8fafc !important;
+}
+
+.ml-features h2,
+.features h2 {
+    color: #8fc2e4 !important;
+}
+
+.ml-features .feature,
+.features .feature {
+    color: #f8fafc !important;
+}
+
+.ml-features .feature strong,
+.features .feature strong {
+    color: #ffffff !important;
+}
+
+.main-content {
+    background: var(--project-bg);
+}
+
+header p,
+.top-bar p,
+.muted,
+.small,
+.description,
+.card p {
+    color: var(--project-muted);
+}
+
+header p,
+.top-bar p {
+    color: #00a9c7 !important;
+}
+
+#clock {
+    color: #000000 !important;
+}
+
+.card,
+.panel,
+.chart-card,
+.table-container,
+.activity-card,
+.report-card,
+.scan-card,
+.detection-card {
+    background: var(--project-surface) !important;
+    border: 1px solid var(--project-border);
+    box-shadow: 0 8px 24px rgba(20, 40, 61, .06) !important;
+}
+
+button,
+.btn,
+.primary-btn,
+.action-btn,
+#downloadAgentBtn {
+    background: var(--project-blue) !important;
+    color: #ffffff !important;
+    border-color: var(--project-blue) !important;
+    box-shadow: 0 6px 14px rgba(23, 105, 170, .16);
+}
+
+button:hover,
+.btn:hover,
+.primary-btn:hover,
+.action-btn:hover,
+#downloadAgentBtn:hover {
+    background: var(--project-blue-dark) !important;
+}
+
+a {
+    color: var(--project-blue);
+}
+
+input,
+select,
+textarea {
+    border-color: var(--project-border) !important;
+    background: #ffffff;
+    color: var(--project-ink);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--project-blue) !important;
+    box-shadow: 0 0 0 3px rgba(23, 105, 170, .12) !important;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--project-bg) !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #9bb5c9 !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--project-blue) !important;
+}
+
+.login-page,
+.signup-page,
+.auth-page,
+.left-section {
+    background: linear-gradient(135deg, var(--project-ink), var(--project-blue-dark)) !important;
+}
+
+.container {
+    box-shadow: 0 18px 45px rgba(20, 40, 61, .12) !important;
+}
+
+.right-section,
+.auth-card,
+.form-card {
+    background: #ffffff !important;
+}
+
+.options a,
+.login-link a,
+.signup-link a,
+.forgot-link {
+    color: var(--project-blue) !important;
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        box-shadow: 0 5px 20px rgba(20, 40, 61, .12) !important;
+    }
+}

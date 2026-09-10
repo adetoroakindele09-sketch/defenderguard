@@ -242,7 +242,7 @@ signupForm.addEventListener("submit", function(e){
 // SEND DATA TO BACKEND
 // ==========================
 
-fetch("http://127.0.0.1:5000/signup", {
+fetch("https://defenderguard.onrender.com/signup", {
 
     method: "POST",
 

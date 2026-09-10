@@ -6,7 +6,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'DM Sans','Segoe UI',sans-serif;
 }
 
 body{
@@ -228,6 +228,12 @@ body{
     color:#22c55e;
     font-weight:bold;
     margin-top:10px;
+
+}
+
+.monitor-box h2{
+
+    color:#ffffff;
 
 }
 
@@ -811,7 +817,19 @@ body{
     padding: 12px 14px;
     border-left: 3px solid #00d9ff;
     background: rgba(0, 217, 255, 0.06);
-    color: #c9d3df;
+    color: #000000;
     font-size: 0.92rem;
     line-height: 1.5;
 }
+
+/* Local project typography and visual system */
+body, body *:not(i){font-family:'DM Sans','Segoe UI',sans-serif !important;}
+body i,.fa,.fas,.far,.fab,.fa-solid,.fa-regular,.fa-brands{font-family:'Font Awesome 6 Free' !important;}
+body{background:#f5f7fa;color:#14283d;line-height:1.5;}
+h1,h2,h3,h4,h5,h6{color:#14283d;font-weight:700;letter-spacing:-.02em;line-height:1.2;}
+.sidebar{background:#14283d;box-shadow:5px 0 20px rgba(20,40,61,.12);}
+.sidebar h2,.sidebar li i,.top-bar h1{color:#8fc2e4;}
+.sidebar li:hover,.sidebar li.active{background:#124d80;box-shadow:none;}
+.card,.panel,.activity-table,.live-log,.summary-card,.file-details,.ml-features{background:#fff;border:1px solid #d6e0ea;box-shadow:0 8px 24px rgba(20,40,61,.06);}
+button,.btn,.action-btn{background:#1769aa;color:#fff;border-color:#1769aa;box-shadow:0 6px 14px rgba(23,105,170,.16);}
+button:hover,.btn:hover,.action-btn:hover{background:#124d80;}

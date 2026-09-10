@@ -2,7 +2,7 @@
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
+    font-family:'DM Sans','Segoe UI',sans-serif;
 }
 
 body{
@@ -196,3 +196,17 @@ button:hover{
     }
 
 }
+
+/* Local project typography and visual system */
+body, body *:not(i){font-family:'DM Sans','Segoe UI',sans-serif !important;}
+body i,.fa,.fas,.far,.fab,.fa-solid,.fa-regular,.fa-brands{font-family:'Font Awesome 6 Free' !important;}
+body{background:#f5f7fa;}
+.container{background:#fff;box-shadow:0 18px 45px rgba(20,40,61,.12);}
+.left-section{background:linear-gradient(135deg,#14283d,#124d80);}
+.right-section{background:#fff;}
+form h2{color:#14283d;font-weight:700;letter-spacing:-.02em;}
+.input-box input{border-color:#d6e0ea;}
+.input-box input:focus{border-color:#1769aa;box-shadow:0 0 0 3px rgba(23,105,170,.12);}
+button{background:#1769aa;box-shadow:0 6px 14px rgba(23,105,170,.16);}
+button:hover{background:#124d80;}
+.options a,.login-link a{color:#1769aa;}

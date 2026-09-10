@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Settings | Malware Detection System</title>
 <link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet" href="theme.css">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 .settings-card{max-width:850px;background:#111827;border-radius:16px;padding:28px;box-shadow:0 0 20px rgba(0,212,255,.12)}
@@ -12,6 +14,7 @@
 .settings-row:last-child{border-bottom:0}
 .badge{padding:8px 14px;border-radius:999px;background:#14532d;color:#22c55e;font-weight:700}
 .small{color:#aab4c5;line-height:1.6}
+.settings-row strong,.settings-row .small,.settings-row .badge{color:#fff !important}
 </style>
 </head>
 <body>
@@ -35,7 +38,7 @@
 <h1>System Settings</h1>
 <p class="small" style="margin:12px 0 28px">Application status and navigation settings for the Malware Detection System.</p>
 <div class="settings-card">
-<div class="settings-row"><div><strong>Backend API</strong><div class="small">Flask service at http://127.0.0.1:5000</div></div><span id="apiStatus" class="badge">Checking...</span></div>
+<div class="settings-row"><div><strong>Backend API</strong><div class="small">Render service at https://defenderguard.onrender.com</div></div><span id="apiStatus" class="badge">Checking...</span></div>
 <div class="settings-row"><div><strong>Dashboard Refresh</strong><div class="small">Live dashboard data refreshes automatically.</div></div><span class="badge">Enabled</span></div>
 <div class="settings-row"><div><strong>File Activity Monitor</strong><div class="small">Real-time monitoring is controlled from the File Activity page.</div></div><button onclick="location.href='activity.html'" style="padding:10px 16px;border:0;border-radius:8px;cursor:pointer">Open Monitor</button></div>
 </div>
@@ -43,7 +46,7 @@
 <script>
 if(localStorage.getItem('loggedIn')!=='true'){location.href='login.html';}
 document.getElementById('logoutBtn').addEventListener('click',()=>{localStorage.removeItem('loggedIn');localStorage.removeItem('user');localStorage.removeItem('currentUser');location.href='login.html';});
-fetch('http://127.0.0.1:5000/dashboard/stats?_='+Date.now(),{cache:'no-store'}).then(r=>{document.getElementById('apiStatus').textContent=r.ok?'Connected':'Unavailable';}).catch(()=>{document.getElementById('apiStatus').textContent='Unavailable';});
+fetch('https://defenderguard.onrender.com/dashboard/stats?_='+Date.now(),{cache:'no-store'}).then(r=>{document.getElementById('apiStatus').textContent=r.ok?'Connected':'Unavailable';}).catch(()=>{document.getElementById('apiStatus').textContent='Unavailable';});
 </script>
 <script src="responsive-nav.js" defer></script>
 </body>

@@ -3,7 +3,7 @@
    Uses Flask backend data only. No demo rows.
 ========================================== */
 
-const API = window.DAVE_API || "http://127.0.0.1:5000";
+const API = window.DAVE_API || "https://defenderguard.onrender.com";
 const API_BASE = API.endsWith("/api") ? API : `${API}/api`;
 
 const loggedIn = localStorage.getItem("loggedIn");
@@ -142,7 +142,7 @@ async function loadDashboard(){
         }
     }catch(err){
         console.error("Dashboard backend error:",err);
-        if(notification) notification.textContent="Cannot load live security data. Make sure Flask is running at http://127.0.0.1:5000.";
+        if(notification) notification.textContent="Cannot load live security data. Make sure the Render backend is available.";
     }
 }
 

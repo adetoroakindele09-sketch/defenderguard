@@ -136,7 +136,7 @@ function(e){
     // SEND TO FLASK BACKEND
     // ==========================
 
-    fetch("http://127.0.0.1:5000/forgot-password",{
+    fetch("https://defenderguard.onrender.com/forgot-password",{
 
         method:"POST",
 

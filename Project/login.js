@@ -50,9 +50,7 @@ loginForm.addEventListener("submit", function (e) {
     // ==========================
 
     const loginAPI = (window.DAVE_API ||
-        ((location.hostname === "localhost" || location.hostname === "127.0.0.1")
-            ? "http://127.0.0.1:5000"
-            : "https://david-defenderguard.vercel.app")).replace(/\/$/, "");
+        "https://defenderguard.onrender.com").replace(/\/$/, "");
 
     fetch(loginAPI + "/login", {
 
