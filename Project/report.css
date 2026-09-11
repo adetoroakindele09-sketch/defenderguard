@@ -752,6 +752,10 @@ body{
     gap:15px;
     flex-wrap:wrap;
 
+
+.generate-section > p{
+    color:#00ffff;
+}
 }
 
 
